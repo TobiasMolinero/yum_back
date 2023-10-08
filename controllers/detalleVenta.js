@@ -7,7 +7,7 @@ const getDetTemp = (req, res) => {
     })
 }
 
-const addDetTemp = (req, res, next) => {
+const addDetTemp = (req, res) => {
     const {nroVenta, idProducto, cantidad} = req.body
     let cantAntigua = 0
     connection.query(`SELECT cantidad FROM detalle_temporal WHERE idProducto = ${idProducto}`, (error, results) => {
@@ -44,4 +44,16 @@ const delTableDetTemp = (req, res) => {
     })
 }
 
-module.exports = {getDetTemp, addDetTemp, delDetTemp, delTableDetTemp}
+const updTableDetTemp = (req, res) => {
+    const nroVenta = req.params.id 
+    connection.query(`INSERT INTO detalle_temporal(nroVenta, idProducto, cantidad)
+                      SELECT nroVenta, idProducto, cantidad FROM detalle_ventas 
+                      WHERE nroVenta=${nroVenta}
+    `, (error, results) => {
+        if(error) throw error
+        res.send(results)
+
+    })
+}
+
+module.exports = {getDetTemp, addDetTemp, delDetTemp, delTableDetTemp, updTableDetTemp}
