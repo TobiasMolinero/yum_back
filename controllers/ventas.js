@@ -85,4 +85,14 @@ const modVenta = (req, res) => {
     })
 }
 
-module.exports = {getLastNroVenta, getVentas, addVenta, delVenta, getOneVenta, modVenta}
+const getVentaConDetalle = (req, res) => {
+    const nroVenta = req.params.id
+    connection.query(`SELECT * FROM tabla_ventas
+                      WHERE nroVenta = ${nroVenta}
+    `, (error, results) => {
+        if(error) throw error 
+        res.json(results)
+    })
+}
+
+module.exports = {getLastNroVenta, getVentas, addVenta, delVenta, getOneVenta, modVenta, getVentaConDetalle}

@@ -56,4 +56,14 @@ const updTableDetTemp = (req, res) => {
     })
 }
 
-module.exports = {getDetTemp, addDetTemp, delDetTemp, delTableDetTemp, updTableDetTemp}
+const getDetalle = (req, res) => {
+    const nroVenta = req.params.id
+    connection.query(`SELECT * FROM det_vta
+                      WHERE nroVenta = ${nroVenta}
+    `, (error, results) => {
+        if(error) throw error
+        res.json(results)
+    })
+}
+
+module.exports = {getDetTemp, addDetTemp, delDetTemp, delTableDetTemp, updTableDetTemp, getDetalle}
