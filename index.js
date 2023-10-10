@@ -17,6 +17,7 @@ const productos = require('./routes/productos')
 const clientes = require('./routes/clientes')
 const empleados = require('./routes/empleados')
 const detalleVenta = require('./routes/detalleVenta')
+const inicio = require('./routes/inicio')
 
 // APP
 const app = express()
@@ -36,6 +37,7 @@ app.use('/', productos)
 app.use('/', clientes)
 app.use('/', empleados)
 app.use('/', detalleVenta)
+app.use('/', inicio)
 
 
 // VERIFICAR CONEXION A LA BASE DE DATOS
