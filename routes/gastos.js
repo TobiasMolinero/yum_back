@@ -10,11 +10,11 @@ const {
 } = require('../controllers/gastos')
 
 router.get('/gastos', allGastos)
-router.get('/gastos/:id', one)
-router.post('/gastos', registrarGasto)
-router.put('/gastos/:id', editarGasto)
-router.delete('/gastos/:id', eliminarGasto)
+router.get('/gastos/one/:id', one)
+router.post('/gastos/agregar', registrarGasto)
+router.put('/gastos/editar/:id', editarGasto)
+router.delete('/gastos/borrar/:id', eliminarGasto)
 
-router.post('/gastos/filtrar', filtrar)
+router.get('/gastos/filtrar/:id', filtrar)
 
 module.exports = router
