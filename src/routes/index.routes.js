@@ -4,4 +4,4 @@ import {index} from '../controllers/index.controllers.js'
 
 router.get('/', index)
 
-export default router
+module.exports = router
