@@ -3,7 +3,7 @@ const logger = require('morgan')
 const compression = require('compression')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const {connection} = require('./database/config')
+// const {connection} = require('./database/config')
 
 // RUTAS
 const ventas = require('./routes/ventas')
@@ -41,10 +41,10 @@ app.use('/', inicio)
 
 
 // VERIFICAR CONEXION A LA BASE DE DATOS
-connection.connect(error => {
-    if(error)console.log('Ocurrio un error al conectar con la base de datos')
-    console.log('Conexion establecida con la DB')
-})
+// connection.connect(error => {
+//     if(error)console.log('Ocurrio un error al conectar con la base de datos')
+//     console.log('Conexion establecida con la DB')
+// })
 
 //SERVIDOR
 app.listen(process.env.PORT || 3000)
