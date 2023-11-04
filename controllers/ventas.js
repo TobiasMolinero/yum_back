@@ -57,7 +57,7 @@ const getOneVenta = (req, res) => {
 const modVenta = (req, res) => {
     const nroVenta = req.params.id
     let {fecha, cliente, empleado, zonaVenta, metodo, obs, importeTotal} = req.body
-    if(obs === undefined){
+    if(obs === undefined || obs === ''){
         obs = '-'
     }
     connection.query(`UPDATE ventas SET fecha = '${fecha}',

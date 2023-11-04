@@ -42,12 +42,12 @@ app.use('/', inicio)
 
 // VERIFICAR CONEXION A LA BASE DE DATOS
 connection.connect(error => {
-    if(error) console.log('Ocurrio un error al conectar con la base de datos')
+    if(error)console.log('Ocurrio un error al conectar con la base de datos')
     console.log('Conexion establecida con la DB')
 })
 
 //SERVIDOR
-app.listen(3000)
+app.listen(process.env.PORT || 3000)
 app.get('/', (req, res) => {
     res.send('<h1 style="text-align: center">El Servidor está Activo</h1>')
 })
