@@ -1,6 +1,6 @@
 import { pool } from '../db.js'
 
-const login = (req, res) => {
+export const login = (req, res) => {
 
     const {nombreUsuario, contraseña} = req.body
 
@@ -16,5 +16,3 @@ const login = (req, res) => {
     })
 }
 
-
-export default {login}

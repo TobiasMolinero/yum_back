@@ -1,13 +1,13 @@
 import { pool } from "../db.js";
 
-const allGastos = (req, res) => {
+export const allGastos = (req, res) => {
   pool.query("SELECT * FROM datos_gastos ORDER BY fecha DESC", (error, results) => {
     if (error) throw error;
     res.json(results);
   });
 };
 
-const one = (req, res) => {
+export const one = (req, res) => {
   const id = req.params.id;
   pool.query(
     `SELECT * FROM gastos_varios WHERE idGasto = ${id}`,
@@ -18,7 +18,7 @@ const one = (req, res) => {
   );
 };
 
-const registrarGasto = (req, res) => {
+export const registrarGasto = (req, res) => {
   const { descripcion, categoria, fecha, importe } = req.body;
   pool.query(
     `INSERT INTO gastos_varios(descripcion, idCategoriaGasto, fecha, importe)
@@ -31,7 +31,7 @@ const registrarGasto = (req, res) => {
   );
 };
 
-const editarGasto = (req, res) => {
+export const editarGasto = (req, res) => {
   const id = req.params.id;
   const { descripcion, categoria, fecha, importe } = req.body;
   pool.query(
@@ -49,7 +49,7 @@ const editarGasto = (req, res) => {
   );
 };
 
-const eliminarGasto = (req, res) => {
+export const eliminarGasto = (req, res) => {
   const id = req.params.id;
   pool.query(
     `DELETE FROM gastos_varios WHERE idGasto = ${id}`,
@@ -60,7 +60,7 @@ const eliminarGasto = (req, res) => {
   );
 };
 
-const filtrar = (req, res) => {
+export const filtrar = (req, res) => {
   const valorMes = req.params.id
   const date = new Date();
   const año = date.getFullYear();
@@ -141,11 +141,3 @@ const filtrar = (req, res) => {
   )
 };
 
-export default {
-  allGastos,
-  one,
-  registrarGasto,
-  editarGasto,
-  eliminarGasto,
-  filtrar,
-};

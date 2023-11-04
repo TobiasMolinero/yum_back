@@ -1,13 +1,13 @@
 import { pool } from '../db.js'
 
-const getClientes = (req, res) => {
+export const getClientes = (req, res) => {
     pool.query('SELECT * FROM clientes WHERE estado = 1', (error, results) => {
         if(error) throw error 
         res.json(results)
     })
 }
 
-const oneCliente = (req, res) => {
+export const oneCliente = (req, res) => {
     const idCliente = req.params.id
     pool.query(`SELECT * FROM clientes WHERE idCliente = ${idCliente}`, (error, results) => {
         if(error) throw error
@@ -15,7 +15,7 @@ const oneCliente = (req, res) => {
     })
 }
 
-const addCliente = (req, res) => {
+export const addCliente = (req, res) => {
     const {nombre, domicilio, telefono} = req.body
     pool.query(`INSERT INTO clientes(nombreCliente, domicilio, telefono)
                       VALUES('${nombre}', '${domicilio}', '${telefono}')
@@ -25,7 +25,7 @@ const addCliente = (req, res) => {
     })
 }
 
-const editCliente = (req, res) => {
+export const editCliente = (req, res) => {
     const idCliente = req.params.id
     const {nombre, domicilio, telefono} = req.body
     pool.query(`UPDATE clientes SET 
@@ -39,12 +39,10 @@ const editCliente = (req, res) => {
     })
 }
 
-const bajaCliente = (req, res) => {
+export const bajaCliente = (req, res) => {
     const idCliente = req.params.id
     pool.query(`UPDATE clientes SET estado = 0 WHERE idCliente = ${idCliente}`, (error, results) => {
         if(error) throw error
         res.send('El cliente se dio de baja con exito.')
     })
 }
-
-export default {getClientes, addCliente, editCliente, oneCliente, bajaCliente}

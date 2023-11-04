@@ -1,6 +1,6 @@
 import { pool } from '../db.js'
 
-const getGananciasDelMes = (req, res) => {
+export const getGananciasDelMes = (req, res) => {
     const date = new Date()
     let mes = date.getMonth()
     let año = date.getFullYear()
@@ -80,7 +80,7 @@ const getGananciasDelMes = (req, res) => {
     })
 }
 
-const getPerdidasDelMes = (req, res) => {
+export const getPerdidasDelMes = (req, res) => {
     const date = new Date()
     let mes = date.getMonth()
     let año = date.getFullYear()
@@ -157,5 +157,3 @@ const getPerdidasDelMes = (req, res) => {
         res.json(results)
     })
 }
-
-export default {getGananciasDelMes, getPerdidasDelMes}

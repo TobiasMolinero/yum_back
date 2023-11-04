@@ -1,13 +1,13 @@
 import { pool } from '../db.js'
 
-const getDetTemp = (req, res) => {
+export const getDetTemp = (req, res) => {
     pool.query('SELECT * FROM det_temp', (error, results) => {
         if(error) throw error
         res.json(results)
     })
 }
 
-const addDetTemp = (req, res) => {
+export const addDetTemp = (req, res) => {
     const {nroVenta, idProducto, cantidad} = req.body
     let cantAntigua = 0
     pool.query(`SELECT cantidad FROM detalle_temporal WHERE idProducto = ${idProducto}`, (error, results) => {
@@ -29,7 +29,7 @@ const addDetTemp = (req, res) => {
     })
 }
 
-const delDetTemp = (req, res) => {
+export const delDetTemp = (req, res) => {
     const idProducto = req.params.id
     pool.query(`DELETE FROM detalle_temporal WHERE idProducto = ${idProducto}`, (error, results) => {
         if(error) throw error
@@ -37,14 +37,14 @@ const delDetTemp = (req, res) => {
     })
 }
 
-const delTableDetTemp = (req, res) => {
+export const delTableDetTemp = (req, res) => {
     pool.query('DELETE FROM detalle_temporal' ,(error, results) => {
         if(error) throw error
         res.send(results)
     })
 }
 
-const updTableDetTemp = (req, res) => {
+export const updTableDetTemp = (req, res) => {
     const nroVenta = req.params.id 
     pool.query(`INSERT INTO detalle_temporal(nroVenta, idProducto, cantidad)
                       SELECT nroVenta, idProducto, cantidad FROM detalle_ventas 
@@ -56,7 +56,7 @@ const updTableDetTemp = (req, res) => {
     })
 }
 
-const getDetalle = (req, res) => {
+export const getDetalle = (req, res) => {
     const nroVenta = req.params.id
     pool.query(`SELECT * FROM det_vta
                       WHERE nroVenta = ${nroVenta}
@@ -65,5 +65,3 @@ const getDetalle = (req, res) => {
         res.json(results)
     })
 }
-
-export default {getDetTemp, addDetTemp, delDetTemp, delTableDetTemp, updTableDetTemp, getDetalle}
