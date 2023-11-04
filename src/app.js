@@ -39,9 +39,4 @@ app.use('/', empleados)
 app.use('/', detalleVenta)
 app.use('/', inicio)
 
-//SI NO ENCONTRARA LA ENVIA UN MENSAJE.
-app.use((req, res, next) => {
-    res.status(404).json({ message: "Not found" });
-  });
-
 export default app
