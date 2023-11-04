@@ -1,10 +1,10 @@
-const {connection} = require('../database/config')
+const {pool} = require('../db.js')
 
 const login = (req, res) => {
 
     const {nombreUsuario, contraseña} = req.body
 
-    connection.query(`SELECT tipoCuenta FROM usuarios 
+    pool.query(`SELECT tipoCuenta FROM usuarios 
                       WHERE nombreUsuario = '${nombreUsuario}' AND contraseña = '${contraseña}'
     `,(error, results) => {
         if(error) throw error

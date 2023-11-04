@@ -1,7 +1,7 @@
-const {connection} = require('../database/config')
+const {pool} = require('../db.js')
 
 const getLastNroVenta = (req, res) => {
-    connection.query(`SELECT MAX(nroVenta) 'nroVenta' FROM ventas`, (error, results) => {
+    pool.query(`SELECT MAX(nroVenta) 'nroVenta' FROM ventas`, (error, results) => {
         if(error) throw error
         res.json(results)
     })
@@ -9,7 +9,7 @@ const getLastNroVenta = (req, res) => {
 
 const getVentas = (req, res) => {
     let idZonaVenta = req.params.id
-    connection.query(`SELECT * FROM tabla_ventas WHERE idZonaVenta = ${idZonaVenta}`, (error, results) => {
+    pool.query(`SELECT * FROM tabla_ventas WHERE idZonaVenta = ${idZonaVenta}`, (error, results) => {
         if(error) throw error
         res.json(results)
     })
@@ -20,13 +20,13 @@ const addVenta = (req, res) => {
     if(obs === undefined){
         obs = '-'
     }
-    connection.query(`INSERT INTO ventas(nroVenta, fecha, idCliente, idEmpleado, idZonaVenta, idMetodoPago, observaciones, totalVenta)
+    pool.query(`INSERT INTO ventas(nroVenta, fecha, idCliente, idEmpleado, idZonaVenta, idMetodoPago, observaciones, totalVenta)
                       VALUES(${nroVenta}, '${fecha}', ${cliente}, ${empleado}, ${zonaVenta}, ${metodo}, '${obs}', ${importeTotal})
     `, (error, results) => {
         if(error)throw error
     })
 
-    connection.query(`INSERT INTO detalle_ventas(nroVenta, idProducto, cantidad)
+    pool.query(`INSERT INTO detalle_ventas(nroVenta, idProducto, cantidad)
                       SELECT nroVenta, idProducto, cantidad FROM detalle_temporal
     `, (error, results) => {
         if(error) throw error
@@ -36,11 +36,11 @@ const addVenta = (req, res) => {
 
 const delVenta = (req, res) => {
     nroVenta = req.params.id
-    connection.query(`DELETE FROM detalle_ventas WHERE nroVenta = ${nroVenta}`, (error, results) => {
+    pool.query(`DELETE FROM detalle_ventas WHERE nroVenta = ${nroVenta}`, (error, results) => {
         if(error) throw error
     })
 
-    connection.query(`DELETE FROM ventas WHERE nroVenta = ${nroVenta}`, (error, results) => {
+    pool.query(`DELETE FROM ventas WHERE nroVenta = ${nroVenta}`, (error, results) => {
         if(error) throw error
         res.send('Se eliminó con exito')
     })
@@ -48,7 +48,7 @@ const delVenta = (req, res) => {
 
 const getOneVenta = (req, res) => {
     const nroVenta = req.params.id
-    connection.query(`SELECT * FROM ventas WHERE nroVenta = ${nroVenta}`, (error, results) => {
+    pool.query(`SELECT * FROM ventas WHERE nroVenta = ${nroVenta}`, (error, results) => {
         if(error) throw error
         res.json(results)
     })
@@ -60,7 +60,7 @@ const modVenta = (req, res) => {
     if(obs === undefined || obs === ''){
         obs = '-'
     }
-    connection.query(`UPDATE ventas SET fecha = '${fecha}',
+    pool.query(`UPDATE ventas SET fecha = '${fecha}',
                       idCliente = ${cliente},
                       idEmpleado = ${empleado},
                       idZonaVenta = ${zonaVenta},
@@ -72,11 +72,11 @@ const modVenta = (req, res) => {
         if(error) throw error
     })
 
-    connection.query(`DELETE FROM detalle_ventas WHERE nroVenta = ${nroVenta}`, (error, results) => {
+    pool.query(`DELETE FROM detalle_ventas WHERE nroVenta = ${nroVenta}`, (error, results) => {
         if(error)throw error
     })
 
-    connection.query(`INSERT INTO detalle_ventas(nroVenta, idProducto, cantidad)
+    pool.query(`INSERT INTO detalle_ventas(nroVenta, idProducto, cantidad)
                       SELECT nroVenta, idProducto, cantidad FROM detalle_temporal
                       WHERE nroVenta = ${nroVenta}
     `, (error, results) => {
@@ -87,7 +87,7 @@ const modVenta = (req, res) => {
 
 const getVentaConDetalle = (req, res) => {
     const nroVenta = req.params.id
-    connection.query(`SELECT * FROM tabla_ventas
+    pool.query(`SELECT * FROM tabla_ventas
                       WHERE nroVenta = ${nroVenta}
     `, (error, results) => {
         if(error) throw error 

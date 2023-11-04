@@ -1,7 +1,7 @@
-const {connection} = require('../database/config')
+const {pool} = require('../db.js')
 
 const getDetTemp = (req, res) => {
-    connection.query('SELECT * FROM det_temp', (error, results) => {
+    pool.query('SELECT * FROM det_temp', (error, results) => {
         if(error) throw error
         res.json(results)
     })
@@ -10,10 +10,10 @@ const getDetTemp = (req, res) => {
 const addDetTemp = (req, res) => {
     const {nroVenta, idProducto, cantidad} = req.body
     let cantAntigua = 0
-    connection.query(`SELECT cantidad FROM detalle_temporal WHERE idProducto = ${idProducto}`, (error, results) => {
+    pool.query(`SELECT cantidad FROM detalle_temporal WHERE idProducto = ${idProducto}`, (error, results) => {
         if(error) throw error
         if(results.length === 0){
-            connection.query(`INSERT INTO detalle_temporal(nroVenta, idProducto, cantidad) 
+            pool.query(`INSERT INTO detalle_temporal(nroVenta, idProducto, cantidad) 
                               VALUES(${nroVenta}, ${idProducto}, ${cantidad})`
             ,(error, results) => {
                 if(error) throw error
@@ -21,7 +21,7 @@ const addDetTemp = (req, res) => {
             })
         } else {
             cantAntigua = results[0].cantidad
-            connection.query(`UPDATE detalle_temporal SET cantidad=${+cantAntigua + +cantidad} WHERE idProducto = ${idProducto}`,(error, results) => {
+            pool.query(`UPDATE detalle_temporal SET cantidad=${+cantAntigua + +cantidad} WHERE idProducto = ${idProducto}`,(error, results) => {
                 if(error) throw error
                 res.send(results)
             })
@@ -31,14 +31,14 @@ const addDetTemp = (req, res) => {
 
 const delDetTemp = (req, res) => {
     const idProducto = req.params.id
-    connection.query(`DELETE FROM detalle_temporal WHERE idProducto = ${idProducto}`, (error, results) => {
+    pool.query(`DELETE FROM detalle_temporal WHERE idProducto = ${idProducto}`, (error, results) => {
         if(error) throw error
         res.send(results)
     })
 }
 
 const delTableDetTemp = (req, res) => {
-    connection.query('DELETE FROM detalle_temporal' ,(error, results) => {
+    pool.query('DELETE FROM detalle_temporal' ,(error, results) => {
         if(error) throw error
         res.send(results)
     })
@@ -46,7 +46,7 @@ const delTableDetTemp = (req, res) => {
 
 const updTableDetTemp = (req, res) => {
     const nroVenta = req.params.id 
-    connection.query(`INSERT INTO detalle_temporal(nroVenta, idProducto, cantidad)
+    pool.query(`INSERT INTO detalle_temporal(nroVenta, idProducto, cantidad)
                       SELECT nroVenta, idProducto, cantidad FROM detalle_ventas 
                       WHERE nroVenta=${nroVenta}
     `, (error, results) => {
@@ -58,7 +58,7 @@ const updTableDetTemp = (req, res) => {
 
 const getDetalle = (req, res) => {
     const nroVenta = req.params.id
-    connection.query(`SELECT * FROM det_vta
+    pool.query(`SELECT * FROM det_vta
                       WHERE nroVenta = ${nroVenta}
     `, (error, results) => {
         if(error) throw error

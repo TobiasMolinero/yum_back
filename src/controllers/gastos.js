@@ -1,7 +1,7 @@
-const { connection } = require("../database/config");
+const { pool } = require("../db.js");
 
 const allGastos = (req, res) => {
-  connection.query("SELECT * FROM datos_gastos ORDER BY fecha DESC", (error, results) => {
+  pool.query("SELECT * FROM datos_gastos ORDER BY fecha DESC", (error, results) => {
     if (error) throw error;
     res.json(results);
   });
@@ -9,7 +9,7 @@ const allGastos = (req, res) => {
 
 const one = (req, res) => {
   const id = req.params.id;
-  connection.query(
+  pool.query(
     `SELECT * FROM gastos_varios WHERE idGasto = ${id}`,
     (error, results) => {
       if (error) throw error;
@@ -20,7 +20,7 @@ const one = (req, res) => {
 
 const registrarGasto = (req, res) => {
   const { descripcion, categoria, fecha, importe } = req.body;
-  connection.query(
+  pool.query(
     `INSERT INTO gastos_varios(descripcion, idCategoriaGasto, fecha, importe)
                       VALUES('${descripcion}', ${categoria}, '${fecha}', ${importe});  
     `,
@@ -34,7 +34,7 @@ const registrarGasto = (req, res) => {
 const editarGasto = (req, res) => {
   const id = req.params.id;
   const { descripcion, categoria, fecha, importe } = req.body;
-  connection.query(
+  pool.query(
     `UPDATE gastos_varios 
                       SET descripcion = '${descripcion}',
                       idCategoriaGasto = ${categoria},
@@ -51,7 +51,7 @@ const editarGasto = (req, res) => {
 
 const eliminarGasto = (req, res) => {
   const id = req.params.id;
-  connection.query(
+  pool.query(
     `DELETE FROM gastos_varios WHERE idGasto = ${id}`,
     (error, results) => {
       if (error) throw error;
@@ -130,7 +130,7 @@ const filtrar = (req, res) => {
     default:
       break;
   }
-  connection.query(
+  pool.query(
     `SELECT * FROM datos_gastos
      WHERE fecha BETWEEN '${fechaUno}' AND '${fechaDos}'
 

@@ -3,9 +3,8 @@ const logger = require('morgan')
 const compression = require('compression')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-// const {connection} = require('./database/config')
 
-// RUTAS
+//IMPORTAMOS RUTAS
 const ventas = require('./routes/ventas')
 const usuarios = require('./routes/usuarios')
 const gastos = require('./routes/gastos')
@@ -19,13 +18,14 @@ const empleados = require('./routes/empleados')
 const detalleVenta = require('./routes/detalleVenta')
 const inicio = require('./routes/inicio')
 
-// APP
+// MIDDLEWARES
 const app = express()
 app.use(bodyParser.json())
 app.use(compression())
 app.use(logger('dev'))
 app.use(cors())
 
+// USAMOS LAS RUTAS
 app.use('/', ventas)
 app.use('/', usuarios)
 app.use('/', gastos)
@@ -39,15 +39,9 @@ app.use('/', empleados)
 app.use('/', detalleVenta)
 app.use('/', inicio)
 
+//SI NO ENCONTRARA LA ENVIA UN MENSAJE.
+app.use((req, res, next) => {
+    res.status(404).json({ message: "Not found" });
+  });
 
-// VERIFICAR CONEXION A LA BASE DE DATOS
-// connection.connect(error => {
-//     if(error)console.log('Ocurrio un error al conectar con la base de datos')
-//     console.log('Conexion establecida con la DB')
-// })
-
-//SERVIDOR
-app.listen(process.env.PORT || 3000)
-app.get('/', (req, res) => {
-    res.send('<h1 style="text-align: center">El Servidor está Activo</h1>')
-})
+export default app

@@ -1,6 +1,6 @@
 const {Router} = require('express')
 const router = Router()
-const { getEstadosPedido} = require('../controllers/estadosPedido')
+const { getEstadosPedido} = require('../controllers/estadosPedido').default
 
 router.get('/estadosPedido', getEstadosPedido)
 

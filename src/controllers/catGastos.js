@@ -1,7 +1,7 @@
-const {connection} = require('../database/config')
+const {pool} = require('../db.js')
 
 const getCatGastos = (req, res) => {
-    connection.query('SELECT * FROM categorias_gastos WHERE estado = 1', (error, results) => {
+    pool.query('SELECT * FROM categorias_gastos WHERE estado = 1', (error, results) => {
         if(error) throw error
         res.json(results)
     })
@@ -9,7 +9,7 @@ const getCatGastos = (req, res) => {
 
 const oneCatGasto = (req, res) => {
     const idCategoriaGasto = req.params.id
-    connection.query(`SELECT * FROM categorias_gastos WHERE idCategoriaGasto = ${idCategoriaGasto}
+    pool.query(`SELECT * FROM categorias_gastos WHERE idCategoriaGasto = ${idCategoriaGasto}
     `, (error, results) => {
         if(error) throw error
         res.json(results)
@@ -18,7 +18,7 @@ const oneCatGasto = (req, res) => {
 
 const addCatGasto = (req, res) => {
     const {categoriaGasto} = req.body
-    connection.query(`INSERT INTO categorias_gastos(categoriaGasto)
+    pool.query(`INSERT INTO categorias_gastos(categoriaGasto)
                        VALUES('${categoriaGasto}')
     `, (error, results) => {
         if(error) throw error
@@ -29,7 +29,7 @@ const addCatGasto = (req, res) => {
 const editarCatGasto = (req, res) => {
     const idCategoriaGasto = req.params.id
     const {categoriaGasto} = req.body
-    connection.query(`UPDATE categorias_gastos SET categoriaGasto = '${categoriaGasto}'
+    pool.query(`UPDATE categorias_gastos SET categoriaGasto = '${categoriaGasto}'
                       WHERE idCategoriaGasto = ${idCategoriaGasto}
     `, (error, results) => {
         if(error) throw error
@@ -39,7 +39,7 @@ const editarCatGasto = (req, res) => {
 
 const borrarCatGasto = (req, res) => {
     const idGasto = req.params.id
-    connection.query(`UPDATE categorias_gastos SET estado = 0 WHERE idCategoriaGasto = ${idGasto}`, (error, results) => {
+    pool.query(`UPDATE categorias_gastos SET estado = 0 WHERE idCategoriaGasto = ${idGasto}`, (error, results) => {
         if(error) throw error
         res.send('Se borró con exito')
     })

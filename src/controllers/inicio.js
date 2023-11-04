@@ -1,4 +1,4 @@
-const {connection} = require('../database/config')
+const {pool} = require('../db.js')
 
 const getGananciasDelMes = (req, res) => {
     const date = new Date()
@@ -71,7 +71,7 @@ const getGananciasDelMes = (req, res) => {
             break;
     }
     getGananciasDelMes
-    connection.query(`SELECT SUM(totalVenta) 'ganancias' FROM ventas
+    pool.query(`SELECT SUM(totalVenta) 'ganancias' FROM ventas
                       WHERE fecha BETWEEN '${fecha1}' AND '${fecha2}'
 
     `,(error, results) => {
@@ -150,7 +150,7 @@ const getPerdidasDelMes = (req, res) => {
         default:
             break;
     }
-    connection.query(`SELECT SUM(importe) 'perdidas' FROM gastos_varios
+    pool.query(`SELECT SUM(importe) 'perdidas' FROM gastos_varios
                       WHERE fecha BETWEEN '${fecha1}' AND '${fecha2}'
     `, (error, results) => {
         if(error) throw error
