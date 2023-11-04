@@ -5,19 +5,36 @@ import bodyParser from "body-parser";
 import cors from 'cors'
 
 //IMPORTAMOS RUTAS
-const indexRoute = require('./routes/index.routes').default
-const ventas = require('./routes/ventas').default
-const usuarios = require('./routes/usuarios').default
-const gastos = require('./routes/gastos').default
-const catGastos = require('./routes/catGastos').default
-const zonas = require('./routes/zonas').default
-const formaPago = require('./routes/formaPago').default
-const estadosPedido = require('./routes/estadosPedido').default
-const productos = require('./routes/productos').default
-const clientes = require('./routes/clientes').default
-const empleados = require('./routes/empleados').default
-const detalleVenta = require('./routes/detalleVenta').default
-const inicio = require('./routes/inicio').default
+
+import indexRoute from './routes/index.routes'
+import ventas from './routes/ventas'
+import usuarios from './routes/usuarios'
+import gastos from './routes/gastos'
+import catGastos from './routes/catGastos'
+import zonas from './routes/zonas'
+import formaPago from './routes/formaPago'
+import estadosPedido from './routes/estadosPedido'
+import productos from './routes/productos'
+import clientes from './routes/clientes'
+import empleados from './routes/empleados'
+import detalleVenta from './routes/detalleVenta'
+import inicio from './routes/inicio'
+
+
+
+// const indexRoute = require('./routes/index.routes').default
+// const ventas = require('./routes/ventas').default
+// const usuarios = require('./routes/usuarios').default
+// const gastos = require('./routes/gastos').default
+// const catGastos = require('./routes/catGastos').default
+// const zonas = require('./routes/zonas').default
+// const formaPago = require('./routes/formaPago').default
+// const estadosPedido = require('./routes/estadosPedido').default
+// const productos = require('./routes/productos').default
+// const clientes = require('./routes/clientes').default
+// const empleados = require('./routes/empleados').default
+// const detalleVenta = require('./routes/detalleVenta').default
+// const inicio = require('./routes/inicio').default
 
 // MIDDLEWARES
 const app = express()
