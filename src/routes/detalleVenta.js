@@ -1,6 +1,6 @@
 import { Router } from 'express'
 const router = Router()
-import { getDetTemp, addDetTemp, delDetTemp, delTableDetTemp, updTableDetTemp, getDetalle } from '../controllers/detalleVenta'
+import { getDetTemp, addDetTemp, delDetTemp, delTableDetTemp, updTableDetTemp, getDetalle } from '../controllers/detalleVenta.js'
 
 router.get('/detalleVentaTemp', getDetTemp)
 router.post('/detalleVentaTemp/add', addDetTemp)

@@ -1,6 +1,6 @@
 import { Router } from 'express'
 const router = Router()
-import { getCatGastos, addCatGasto, borrarCatGasto, oneCatGasto, editarCatGasto } from '../controllers/catGastos'
+import { getCatGastos, addCatGasto, borrarCatGasto, oneCatGasto, editarCatGasto } from '../controllers/catGastos.js'
 
 router.get('/catgastos', getCatGastos)
 router.get('/catgastos/one/:id', oneCatGasto)

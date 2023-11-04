@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { allGastos, registrarGasto, editarGasto, eliminarGasto, one, filtrar } from '../controllers/gastos'
+import { allGastos, registrarGasto, editarGasto, eliminarGasto, one, filtrar } from '../controllers/gastos.js'
 const router = Router()
 
 router.get('/gastos', allGastos)

@@ -1,6 +1,6 @@
 import { Router } from 'express'
 const router = Router()
-import { getEmpleados } from '../controllers/empleados'
+import { getEmpleados } from '../controllers/empleados.js'
 
 router.get('/empleados', getEmpleados)
 

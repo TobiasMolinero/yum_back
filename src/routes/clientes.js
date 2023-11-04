@@ -1,6 +1,6 @@
 import { Router } from 'express'
 const router = Router()
-import { getClientes, addCliente, editCliente, oneCliente, bajaCliente } from '../controllers/clientes'
+import { getClientes, addCliente, editCliente, oneCliente, bajaCliente } from '../controllers/clientes.js'
 
 router.get('/clientes', getClientes)
 router.get('/clientes/:id', oneCliente)

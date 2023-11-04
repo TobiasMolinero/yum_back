@@ -6,19 +6,19 @@ import cors from 'cors'
 
 //IMPORTAMOS RUTAS
 
-import indexRoute from './routes/index.routes'
-import ventas from './routes/ventas'
-import usuarios from './routes/usuarios'
-import gastos from './routes/gastos'
-import catGastos from './routes/catGastos'
-import zonas from './routes/zonas'
-import formaPago from './routes/formaPago'
-import estadosPedido from './routes/estadosPedido'
-import productos from './routes/productos'
-import clientes from './routes/clientes'
-import empleados from './routes/empleados'
-import detalleVenta from './routes/detalleVenta'
-import inicio from './routes/inicio'
+import indexRoute from './routes/index.routes.js'
+import ventas from './routes/ventas.js'
+import usuarios from './routes/usuarios.js'
+import gastos from './routes/gastos.js'
+import catGastos from './routes/catGastos.js'
+import zonas from './routes/zonas.js'
+import formaPago from './routes/formaPago.js'
+import estadosPedido from './routes/estadosPedido.js'
+import productos from './routes/productos.js'
+import clientes from './routes/clientes.js'
+import empleados from './routes/empleados.js'
+import detalleVenta from './routes/detalleVenta.js'
+import inicio from './routes/inicio.js'
 
 
 

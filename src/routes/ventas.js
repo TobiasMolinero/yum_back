@@ -1,6 +1,6 @@
 import { Router } from 'express'
 const router = Router()
-import { getLastNroVenta, addVenta, getVentas, delVenta, getOneVenta, modVenta, getVentaConDetalle } from '../controllers/ventas'
+import { getLastNroVenta, addVenta, getVentas, delVenta, getOneVenta, modVenta, getVentaConDetalle } from '../controllers/ventas.js'
 
 router.get('/ventas/ventaZona/:id', getVentas)
 router.get('/ventas/lastVenta', getLastNroVenta)
