@@ -1,4 +1,4 @@
-const {pool} = require('../db.js')
+import { pool } from '../db.js'
 
 const getLastNroVenta = (req, res) => {
     pool.query(`SELECT MAX(nroVenta) 'nroVenta' FROM ventas`, (error, results) => {
@@ -95,4 +95,4 @@ const getVentaConDetalle = (req, res) => {
     })
 }
 
-module.exports = {getLastNroVenta, getVentas, addVenta, delVenta, getOneVenta, modVenta, getVentaConDetalle}
+export default {getLastNroVenta, getVentas, addVenta, delVenta, getOneVenta, modVenta, getVentaConDetalle}

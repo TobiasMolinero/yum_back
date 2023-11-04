@@ -1,6 +1,6 @@
-const {Router} = require('express')
+import { Router } from 'express'
 const router = Router()
-const {getDetTemp, addDetTemp, delDetTemp, delTableDetTemp, updTableDetTemp, getDetalle} = require('../controllers/detalleVenta')
+import { getDetTemp, addDetTemp, delDetTemp, delTableDetTemp, updTableDetTemp, getDetalle } from '../controllers/detalleVenta'
 
 router.get('/detalleVentaTemp', getDetTemp)
 router.post('/detalleVentaTemp/add', addDetTemp)
@@ -10,4 +10,4 @@ router.post('/detalleVentaTemp/updateTable/:id', updTableDetTemp)
 
 router.get('/detalleVenta/:id', getDetalle)
 
-module.exports = router
+export default router

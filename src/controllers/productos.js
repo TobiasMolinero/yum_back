@@ -1,4 +1,4 @@
-const {pool} = require('../db.js')
+import { pool } from '../db.js'
 
 const getProductos = (req, res) => {
     pool.query('SELECT idProducto, nombreProducto, precioMenor, precioMayor FROM productos', (error, results) => {
@@ -8,4 +8,4 @@ const getProductos = (req, res) => {
 }
 
 
-module.exports = {getProductos}
+export default {getProductos}

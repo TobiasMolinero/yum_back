@@ -1,13 +1,6 @@
-const {Router} = require('express')
+import { Router } from 'express'
+import { allGastos, registrarGasto, editarGasto, eliminarGasto, one, filtrar } from '../controllers/gastos'
 const router = Router()
-const {
-    allGastos, 
-    registrarGasto, 
-    editarGasto, 
-    eliminarGasto, 
-    one,
-    filtrar
-} = require('../controllers/gastos')
 
 router.get('/gastos', allGastos)
 router.get('/gastos/one/:id', one)
@@ -17,4 +10,4 @@ router.delete('/gastos/borrar/:id', eliminarGasto)
 
 router.get('/gastos/filtrar/:id', filtrar)
 
-module.exports = router
+export default router

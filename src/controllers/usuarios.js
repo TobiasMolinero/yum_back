@@ -1,4 +1,4 @@
-const {pool} = require('../db.js')
+import { pool } from '../db.js'
 
 const login = (req, res) => {
 
@@ -17,4 +17,4 @@ const login = (req, res) => {
 }
 
 
-module.exports = {login}
+export default {login}

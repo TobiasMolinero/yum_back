@@ -1,4 +1,4 @@
-const {pool} = require('../db.js')
+import { pool } from '../db.js'
 
 const getEmpleados = (req, res) => {
     pool.query('SELECT idEmpleado, nombreEmpleado FROM empleados', (error, results) => {
@@ -7,4 +7,4 @@ const getEmpleados = (req, res) => {
     })
 }
 
-module.exports = {getEmpleados}
+export default {getEmpleados}

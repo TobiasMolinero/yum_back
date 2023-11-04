@@ -1,7 +1,7 @@
-const {Router} = require('express')
+import { Router } from 'express'
 const router = Router()
-const {getEmpleados} = require('../controllers/empleados')
+import { getEmpleados } from '../controllers/empleados'
 
 router.get('/empleados', getEmpleados)
 
-module.exports = router
+export default router

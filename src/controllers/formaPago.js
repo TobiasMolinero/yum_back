@@ -1,4 +1,4 @@
-const {pool} = require('../db.js')
+import { pool } from '../db.js'
 
 const getFormas = (req, res) => {
     pool.query('SELECT idMetodoPago, metodo FROM metodos_de_pago', (error, results) => {
@@ -7,4 +7,4 @@ const getFormas = (req, res) => {
     })
 }
 
-module.exports = {getFormas}
+export default {getFormas}

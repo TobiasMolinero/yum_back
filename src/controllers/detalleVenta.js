@@ -1,4 +1,4 @@
-const {pool} = require('../db.js')
+import { pool } from '../db.js'
 
 const getDetTemp = (req, res) => {
     pool.query('SELECT * FROM det_temp', (error, results) => {
@@ -66,4 +66,4 @@ const getDetalle = (req, res) => {
     })
 }
 
-module.exports = {getDetTemp, addDetTemp, delDetTemp, delTableDetTemp, updTableDetTemp, getDetalle}
+export default {getDetTemp, addDetTemp, delDetTemp, delTableDetTemp, updTableDetTemp, getDetalle}

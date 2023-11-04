@@ -1,7 +1,7 @@
-const {Router} = require('express')
+import { Router } from 'express'
 const router = Router()
-const {getFormas} = require('../controllers/formaPago')
+import { getFormas } from '../controllers/formaPago'
 
 router.get('/formaPago', getFormas)
 
-module.exports = router
+export default router

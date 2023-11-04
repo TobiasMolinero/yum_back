@@ -1,8 +1,8 @@
-const {Router} = require('express')
+import { Router } from 'express'
 const router = Router()
-const {getZonas} = require('../controllers/zonas')
+import { getZonas } from '../controllers/zonas'
 
 router.get('/zonas', getZonas)
 
 
-module.exports = router
+export default router

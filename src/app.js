@@ -1,29 +1,29 @@
-const express = require('express')
-const logger = require('morgan')
-const compression = require('compression')
-const bodyParser = require('body-parser')
-const cors = require('cors')
+import express from "express";
+import morgan from "morgan";
+import compression from "compression";
+import bodyParser from "body-parser";
+import cors from 'cors'
 
 //IMPORTAMOS RUTAS
-const indexRoute = require('./routes/index.routes')
-const ventas = require('./routes/ventas')
-const usuarios = require('./routes/usuarios')
-const gastos = require('./routes/gastos')
-const catGastos = require('./routes/catGastos')
-const zonas = require('./routes/zonas')
-const formaPago = require('./routes/formaPago')
-const estadosPedido = require('./routes/estadosPedido')
-const productos = require('./routes/productos')
-const clientes = require('./routes/clientes')
-const empleados = require('./routes/empleados')
-const detalleVenta = require('./routes/detalleVenta')
-const inicio = require('./routes/inicio')
+const indexRoute = require('./routes/index.routes').default
+const ventas = require('./routes/ventas').default
+const usuarios = require('./routes/usuarios').default
+const gastos = require('./routes/gastos').default
+const catGastos = require('./routes/catGastos').default
+const zonas = require('./routes/zonas').default
+const formaPago = require('./routes/formaPago').default
+const estadosPedido = require('./routes/estadosPedido').default
+const productos = require('./routes/productos').default
+const clientes = require('./routes/clientes').default
+const empleados = require('./routes/empleados').default
+const detalleVenta = require('./routes/detalleVenta').default
+const inicio = require('./routes/inicio').default
 
 // MIDDLEWARES
 const app = express()
 app.use(bodyParser.json())
 app.use(compression())
-app.use(logger('dev'))
+app.use(morgan('dev'))
 app.use(cors())
 
 // USAMOS LAS RUTAS

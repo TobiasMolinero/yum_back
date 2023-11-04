@@ -1,4 +1,4 @@
-const { pool } = require("../db.js");
+import { pool } from "../db.js";
 
 const allGastos = (req, res) => {
   pool.query("SELECT * FROM datos_gastos ORDER BY fecha DESC", (error, results) => {
@@ -141,7 +141,7 @@ const filtrar = (req, res) => {
   )
 };
 
-module.exports = {
+export default {
   allGastos,
   one,
   registrarGasto,

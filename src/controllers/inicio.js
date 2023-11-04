@@ -1,4 +1,4 @@
-const {pool} = require('../db.js')
+import { pool } from '../db.js'
 
 const getGananciasDelMes = (req, res) => {
     const date = new Date()
@@ -158,4 +158,4 @@ const getPerdidasDelMes = (req, res) => {
     })
 }
 
-module.exports = {getGananciasDelMes, getPerdidasDelMes}
+export default {getGananciasDelMes, getPerdidasDelMes}

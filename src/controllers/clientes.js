@@ -1,4 +1,4 @@
-const {pool} = require('../db.js')
+import { pool } from '../db.js'
 
 const getClientes = (req, res) => {
     pool.query('SELECT * FROM clientes WHERE estado = 1', (error, results) => {
@@ -47,4 +47,4 @@ const bajaCliente = (req, res) => {
     })
 }
 
-module.exports = {getClientes, addCliente, editCliente, oneCliente, bajaCliente}
+export default {getClientes, addCliente, editCliente, oneCliente, bajaCliente}

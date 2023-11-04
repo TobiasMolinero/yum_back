@@ -1,6 +1,6 @@
-const {Router} = require('express')
+import { Router } from 'express'
 const router = Router()
-const {getLastNroVenta, addVenta, getVentas, delVenta, getOneVenta, modVenta, getVentaConDetalle} = require('../controllers/ventas')
+import { getLastNroVenta, addVenta, getVentas, delVenta, getOneVenta, modVenta, getVentaConDetalle } from '../controllers/ventas'
 
 router.get('/ventas/ventaZona/:id', getVentas)
 router.get('/ventas/lastVenta', getLastNroVenta)
@@ -10,4 +10,4 @@ router.post('/ventas/add', addVenta)
 router.delete('/ventas/delete/:id', delVenta)
 router.put('/ventas/update/:id', modVenta)
 
-module.exports = router
+export default router

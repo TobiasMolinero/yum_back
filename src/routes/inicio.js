@@ -1,8 +1,8 @@
-const {Router} = require('express')
+import { Router } from 'express'
 const router = Router()
-const {getGananciasDelMes, getPerdidasDelMes} = require('../controllers/inicio')
+import { getGananciasDelMes, getPerdidasDelMes } from '../controllers/inicio'
 
 router.get('/inicio/ganancias', getGananciasDelMes)
 router.get('/inicio/perdidas', getPerdidasDelMes)
 
-module.exports = router
+export default router
