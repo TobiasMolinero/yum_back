@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 
 //IMPORTAMOS RUTAS
+const indexRoute = require('./routes/index.routes')
 const ventas = require('./routes/ventas')
 const usuarios = require('./routes/usuarios')
 const gastos = require('./routes/gastos')
@@ -26,6 +27,7 @@ app.use(logger('dev'))
 app.use(cors())
 
 // USAMOS LAS RUTAS
+app.use('/', indexRoute)
 app.use('/', ventas)
 app.use('/', usuarios)
 app.use('/', gastos)
