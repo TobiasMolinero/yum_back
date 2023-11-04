@@ -1,4 +1,4 @@
 
 export const index = (req, res) => {
-    res.send('<h1 style="text-align: center">El Servidor está Activo</h1>')
+    res.send('<h1 style="text-align: center">Bienvenido/a a la API de YUM Paltas </h1>')
 }
